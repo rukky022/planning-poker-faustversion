@@ -3,13 +3,13 @@ import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 import {
   Header,
-  Footer,
   Main,
   Container,
   NavigationMenu,
-  Hero,
   SEO,
 } from '../components';
+import { Grid, Typography } from '@mui/material';
+import { PPButton } from '../components/PPButton';
 
 export default function Component() {
   const { data } = useQuery(Component.query, {
@@ -23,22 +23,21 @@ export default function Component() {
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO title="Planning Poker" description="A WP Engine Story Pointing Tool" />
       <Header
-        title={siteTitle}
-        description={siteDescription}
-        menuItems={primaryMenu}
+        title="Planning Poker"
+        description="A WP Engine Story Pointing Tool"
+        menuItems={[primaryMenu[0]]}
       />
-      <Main>
-        <Container>
-          <Hero title={'Front Page'} />
-          <div className="text-center">
-            <p>This page is utilizing the "front-page" WordPress template.</p>
-            <code>wp-templates/front-page.js</code>
-          </div>
+      <Main id="planningPokerMain">
+        <Container id="planningPokerContainer">
+          <Grid container sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignContent: 'center'}}>
+            <Typography variant='h2' sx={{mb: 2}}>Start a Session</Typography>
+            <PPButton text='Create game' link='/game'/>
+          </Grid>
+
         </Container>
       </Main>
-      <Footer title={siteTitle} menuItems={footerMenu} />
     </>
   );
 }
